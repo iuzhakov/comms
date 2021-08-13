@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 
 import { Header } from "./components/Header/Header";
@@ -85,10 +85,6 @@ function App() {
     },
     [sendMessage]
   );
-
-  useEffect(() => {
-    setHasMore(!!data && data.messages.length >= pageLimit);
-  }, [data]);
 
   return (
     <div className="h-screen md:container mx-auto md:flex justify-center items-center">

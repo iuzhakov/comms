@@ -10,17 +10,6 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-// import { offsetLimitPagination } from "@apollo/client/utilities";
-
-// const cache = new InMemoryCache({
-//   typePolicies: {
-//     Query: {
-//       fields: {
-//         feed: offsetLimitPagination(),
-//       },
-//     },
-//   },
-// });
 
 const httpLink = createHttpLink({
   uri: "https://guided-ferret-24.hasura.app/v1/graphql",
@@ -38,7 +27,6 @@ const authLink = setContext((_, { headers }) => {
 
 export const client = new ApolloClient({
   cache: new InMemoryCache(),
-  //   cache,
   link: authLink.concat(httpLink),
 });
 
