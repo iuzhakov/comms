@@ -39,6 +39,7 @@ export const Footer = ({ disabled, onSend }: FooterProps) => {
             disabled={disabled}
             placeholder="Message"
             onChange={onChange}
+            maxlength={250} // just example
             onKeyPress={sendMessage}
           />
         </div>

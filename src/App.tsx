@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
+import { v4 as uuidv4 } from "uuid";
 
 import { Header } from "./components/Header/Header";
 import { MessageList } from "./components/MessageList/MessageList";
@@ -39,11 +40,12 @@ function App() {
         variables,
         data: {
           messages: [
-            ...(previousData ? previousData.messages : []),
             insert_messages_one,
+            ...(previousData ? previousData.messages : []),
           ],
         },
       });
+      setPaginationOffset((prev) => prev + 1);
     },
   });
 
@@ -77,7 +79,7 @@ function App() {
         optimisticResponse: {
           insert_messages_one: {
             __typename: "messages",
-            id: -1,
+            id: uuidv4(),
             ...variables,
           },
         },
